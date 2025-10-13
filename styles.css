@@ -14,14 +14,14 @@ body {
 .container {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   padding: 2em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 4em;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .anime-text {
@@ -36,6 +36,34 @@ body {
 .anime-header {
   font-size: 10vw;
   font-weight: 400;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .container {
+    padding: 1em;
+    gap: 2em;
+    justify-content: flex-start;
+    padding-top: 2em;
+  }
+  
+  .anime-header {
+    font-size: 15vw;
+    margin-bottom: 0.5em;
+  }
+  
+  .tagline {
+    font-size: 4vw;
+    margin: 0.5em 0 1em 0;
+  }
+  
+  .anime-text {
+    font-size: 14px;
+  }
+  
+  .contact-link a {
+    font-size: 16px;
+  }
 }
 
 .word {
