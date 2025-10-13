@@ -51,3 +51,21 @@ body {
   display: inline-block;
   will-change: transform;
 }
+
+.contact-link {
+  margin-top: 2em;
+  text-align: center;
+}
+
+.contact-link a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 400;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.3s ease;
+}
+
+.contact-link a:hover {
+  border-bottom: 1px solid #fff;
+}
