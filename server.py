@@ -10,7 +10,7 @@ import webbrowser
 from pathlib import Path
 
 # Configuration
-PORT = 8080
+PORT = 3000
 HOST = '0.0.0.0'  # Bind to all network interfaces
 
 class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):

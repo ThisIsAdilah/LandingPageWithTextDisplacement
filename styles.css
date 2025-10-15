@@ -71,7 +71,12 @@ body {
     font-size: 14px;
   }
   
-  .contact-link a {
+  .links-container {
+    flex-direction: column;
+    gap: 1em;
+  }
+  
+  .contact-link a, .join-waitlist a {
     font-size: 16px;
   }
 }
@@ -90,12 +95,19 @@ body {
   will-change: transform;
 }
 
-.contact-link {
+.links-container {
   margin-top: 0.2em;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
 }
 
-.contact-link a {
+.contact-link, .join-waitlist {
+  display: inline-block;
+}
+
+.contact-link a, .join-waitlist a {
   color: #fff;
   text-decoration: none;
   font-size: 18px;
@@ -104,6 +116,6 @@ body {
   transition: border-bottom 0.3s ease;
 }
 
-.contact-link a:hover {
+.contact-link a:hover, .join-waitlist a:hover {
   border-bottom: 1px solid #fff;
 }
