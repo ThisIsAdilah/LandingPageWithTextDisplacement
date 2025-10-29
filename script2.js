@@ -28,14 +28,21 @@ function setupCanvas() {
 }
 
 function setupWebGL() {
-  gl = canvas.getContext("webgl", {
+  // Try webgl2 first, fallback to webgl
+  gl = canvas.getContext("webgl2") || canvas.getContext("webgl", {
     alpha: true,
     depth: false,
     stencil: false,
-    antialias: true,
-    powerPreference: "high-performance",
+    antialias: false, // Disable antialiasing on mobile for performance
+    powerPreference: "low-power", // Better for mobile devices
     premultipliedAlpha: false,
+    preserveDrawingBuffer: false,
   });
+
+  if (!gl) {
+    console.error("WebGL not supported");
+    return;
+  }
 
   gl.enable(gl.BLEND);
   gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
@@ -329,6 +336,13 @@ function init() {
   try {
     setupCanvas();
     setupWebGL();
+    
+    // Check if WebGL is available before proceeding
+    if (!gl) {
+      console.error("WebGL is not available on this device");
+      return;
+    }
+    
     setupShaders();
     loadLogo();
     setupEvents();
