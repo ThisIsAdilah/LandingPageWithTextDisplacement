@@ -119,7 +119,7 @@ function createParticles(pixels) {
         const originalA = pixels[pixelIndex + 3] / 255;
 
         // Keep logo at high opacity to make white portions clear and visible
-        const transparentAlpha = originalA * 0.9;
+        const transparentAlpha = originalA * 2.0;
 
         colors.push(
           originalR * logoTint.r,
