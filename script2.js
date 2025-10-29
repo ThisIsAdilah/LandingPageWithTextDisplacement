@@ -1,7 +1,7 @@
 import { vertexShader, fragmentShader } from "./shaders.js";
 
 const config = {
-  logoPath: "logo.png",  // PNG with transparency
+  logoPath: "logo.jpg",  // JPG version that works
   logoSize: 1250,
   logoColor: "#E0E0E0",  // Light grey, much closer to white
   canvasBg: "rgba(20, 20, 20, 0.0)",  // Semi-transparent so background shows through
