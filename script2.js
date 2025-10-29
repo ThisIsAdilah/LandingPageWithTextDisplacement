@@ -67,9 +67,12 @@ function loadLogo() {
 
     // Adjust scale for mobile devices - make logo smaller on smaller screens
     let scale = 0.9;
-    if (window.innerWidth < 768) {
-      scale = 0.5; // Much smaller on mobile
-    } else if (window.innerWidth < 1024) {
+    const isMobile = window.innerWidth < 768;
+    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+    
+    if (isMobile) {
+      scale = 0.4; // Even smaller on mobile for better visibility
+    } else if (isTablet) {
       scale = 0.7; // Medium size on tablet
     }
     
@@ -78,12 +81,15 @@ function loadLogo() {
     ctx.drawImage(image, offset, offset, size, size);
 
     const imageData = ctx.getImageData(0, 0, config.logoSize, config.logoSize);
-    createParticles(imageData.data);
+    
+    // Reduce particle density on mobile for better performance
+    const particleSkip = isMobile ? 2 : 1;
+    createParticles(imageData.data, particleSkip);
   };
   image.src = config.logoPath;
 }
 
-function createParticles(pixels) {
+function createParticles(pixels, particleSkip = 1) {
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
   const positions = [];
@@ -102,8 +108,8 @@ function createParticles(pixels) {
 
   const logoTint = hexToRgb(config.logoColor);
 
-  for (let i = 0; i < config.logoSize; i++) {
-    for (let j = 0; j < config.logoSize; j++) {
+  for (let i = 0; i < config.logoSize; i += particleSkip) {
+    for (let j = 0; j < config.logoSize; j += particleSkip) {
       const pixelIndex = (i * config.logoSize + j) * 4;
       const alpha = pixels[pixelIndex + 3];
 
