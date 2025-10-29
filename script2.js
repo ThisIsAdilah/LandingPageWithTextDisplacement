@@ -66,6 +66,11 @@ function compileShader(type, source) {
 
 function loadLogo() {
   const image = new Image();
+  
+  image.onerror = function() {
+    console.error("Failed to load logo image:", config.logoPath);
+  };
+  
   image.onload = function () {
     const tempCanvas = document.createElement("canvas");
     const ctx = tempCanvas.getContext("2d");
