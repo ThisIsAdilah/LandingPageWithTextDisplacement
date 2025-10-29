@@ -63,7 +63,7 @@ body {
 
 @media (max-width: 768px) {
   .black-section #canvas {
-    min-height: 300px;
+    display: none;
   }
 }
 

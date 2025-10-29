@@ -17,8 +17,6 @@ let positionArray, colorArray;
 let positionBuffer, colorBuffer;
 let mouse = { x: 0, y: 0 };
 let animationCount = 0;
-let logoImage = null;
-let logoLoaded = false;
 
 function setupCanvas() {
   canvas = document.getElementById("canvas");
@@ -66,48 +64,14 @@ function compileShader(type, source) {
   return shader;
 }
 
-// Preload logo image immediately
-function preloadLogo() {
-  if (logoImage) return; // Already preloading
-  
-  logoImage = new Image();
-  logoImage.crossOrigin = "anonymous";
-  
-  logoImage.onerror = function() {
-    console.error("Failed to preload logo image:", config.logoPath);
-  };
-  
-  logoImage.onload = function() {
-    logoLoaded = true;
-  };
-  
-  logoImage.src = config.logoPath;
-}
-
 function loadLogo() {
-  const image = logoImage || new Image();
+  const image = new Image();
   
-  // If we already have the image loaded, process it immediately
-  if (logoLoaded && logoImage && logoImage.complete) {
-    processLogoImage(logoImage);
-    return;
-  }
-  
-  // Otherwise wait for load
   image.onerror = function() {
     console.error("Failed to load logo image:", config.logoPath);
   };
   
   image.onload = function () {
-    processLogoImage(image);
-  };
-  
-  if (!logoImage || !logoImage.complete) {
-    image.src = config.logoPath;
-  }
-}
-
-function processLogoImage(image) {
     const tempCanvas = document.createElement("canvas");
     const ctx = tempCanvas.getContext("2d");
     tempCanvas.width = config.logoSize;
@@ -133,6 +97,8 @@ function processLogoImage(image) {
     // Reduce particle density on mobile for better performance
     const particleSkip = isMobile ? 2 : 1;
     createParticles(imageData.data, particleSkip);
+  };
+  image.src = config.logoPath;
 }
 
 function createParticles(pixels, particleSkip = 1) {
@@ -372,10 +338,17 @@ function setupEvents() {
 }
 
 function init() {
+  // Skip WebGL logo on mobile devices
+  const isMobile = window.innerWidth < 768;
+  if (isMobile) {
+    const canvas = document.getElementById("canvas");
+    if (canvas) {
+      canvas.style.display = "none";
+    }
+    return;
+  }
+  
   try {
-    // Start preloading logo immediately
-    preloadLogo();
-    
     setupCanvas();
     setupWebGL();
     
@@ -386,42 +359,11 @@ function init() {
     }
     
     setupShaders();
-    
-    // Wait for logo to load, then render
-    if (logoLoaded && logoImage && logoImage.complete) {
-      loadLogo();
-    } else {
-      // Wait for logo to load
-      const checkLogo = setInterval(() => {
-        if (logoLoaded && logoImage && logoImage.complete) {
-          clearInterval(checkLogo);
-          loadLogo();
-        }
-      }, 50);
-      
-      // Timeout after 5 seconds
-      setTimeout(() => {
-        clearInterval(checkLogo);
-        if (logoImage && logoImage.complete) {
-          loadLogo();
-        } else {
-          console.warn("Logo loading timeout, attempting to load anyway");
-          loadLogo();
-        }
-      }, 5000);
-    }
-    
+    loadLogo();
     setupEvents();
   } catch (error) {
     console.error("Error initializing WebGL canvas:", error);
   }
 }
 
-// Start preloading immediately when script loads
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  // DOM already loaded, start immediately
-  preloadLogo();
-  init();
-}
+init();
