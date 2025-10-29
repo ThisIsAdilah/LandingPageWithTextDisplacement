@@ -5,15 +5,59 @@
   user-select: none;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: #1a1a1a;
-  color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  color: #e7b437;
   font-family: "TWK Lausanne", monospace;
+  background-color: #1a1a1a;
+}
+
+/* Hero Section with Background Image */
+.hero-section {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+.parallax-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #1a1a1a;
+  background-image: url('bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: none !important;
+  z-index: 0;
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Black Section */
+.black-section {
+  min-height: 100vh;
+  background-color: transparent;
+  position: relative;
+  z-index: 10;
 }
 
 .container {
   position: relative;
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
   padding: 2em;
   display: flex;
@@ -25,6 +69,7 @@ body {
 }
 
 .anime-text {
+  color: #fdebc6;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
@@ -39,6 +84,7 @@ body {
 }
 
 .tagline {
+  color: #fdebc6;
   font-size: 1.2vw;
   font-weight: 300;
   text-align: center;
@@ -108,7 +154,7 @@ body {
 }
 
 .contact-link a, .join-waitlist a {
-  color: #fff;
+  color: #fdebc6;
   text-decoration: none;
   font-size: 18px;
   font-weight: 400;

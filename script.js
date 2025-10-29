@@ -114,4 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   animateTextElements(".anime-text", "words");
   animateTextElements(".anime-header", "letters");
+  
+  // Keep background fixed; no scroll transforms
+  // This ensures the first page content does not move and no gap appears
 });

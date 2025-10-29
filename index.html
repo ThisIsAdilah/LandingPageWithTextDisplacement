@@ -7,34 +7,53 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container">
-      <h1 class="anime-header">LUNETRONIC</h1>
-      
-      <div class="tagline">
-        A QUANTUM COMPANY MAKING ALTERING HOW YOU PERCEIVE AND INTERACT WITH TIME AND SPACE.
-      </div>
-      
-      <p class="anime-text">
-
-        Quantum is at an inflection point. Building scalable quantum technology is the most important
-         technical problem of our time. We are dedicated to this goal, with a single focus: to make
-          quantum systems that are both useful and scalable.
-                
-        Our founding team is comprised quantum physicists from MIT and
-         industry engineering leaders. We're assembling a lean, world-class team of engineers, 
-         researchers and technologists. If you're passionate about quantum and want to work on the 
-         most important challenge of our age, contact us.
-
-      </p>
-      <div class="links-container">
-        <div class="contact-link">
-          <a href="mailto:adilah@lunetronic.com">Contact Us</a>
+    <!-- First Section with Background Image -->
+    <section class="hero-section">
+      <div class="parallax-bg"></div>
+      <div class="container parallax-content">
+        <h1 class="anime-header">LUNETRONIC</h1>
+        
+        <div class="tagline">
+          A QUANTUM COMPANY MAKING ALTERING HOW YOU PERCEIVE AND INTERACT WITH TIME AND SPACE.
         </div>
-      </div>
+        
+        <p class="anime-text">
 
-      <!-- <h1 class="anime-header">QUANTUM IS WITHIN REACH</h1> -->
-      
-    </div>
+          Quantum is at an inflection point. Building scalable quantum technology is the most important
+           technical problem of our time. We are dedicated to this goal, with a single focus: to make
+            quantum systems that are both useful and scalable.
+                  
+          Our founding team is comprised quantum physicists from MIT and
+           industry engineering leaders. We're assembling a lean, world-class team of engineers, 
+           researchers and technologists. If you're passionate about quantum and want to work on the 
+           most important challenge of our age, contact us.
+
+        </p>
+        <div class="links-container">
+          <div class="contact-link">
+            <a href="mailto:adilah@lunetronic.com">Contact Us</a>
+          </div>
+        </div>
+
+        <!-- <h1 class="anime-header">QUANTUM IS WITHIN REACH</h1> -->
+        
+      </div>
+    </section>
+
+    <!-- Second Section - Black Background -->
+    <section class="black-section">
+      <style>
+        .black-section * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+      </style>
+      <div class="container">
+         <canvas id="canvas"></canvas>
+         <script type="module" src="/script2.js"></script>
+      </div>
+    </section>
 
     <script type="module" src="script.js"></script>
   </body>
