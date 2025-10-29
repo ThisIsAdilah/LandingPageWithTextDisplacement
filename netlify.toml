@@ -1,3 +1,7 @@
+[build]
+  publish = "."
+  functions = "."
+
 [[headers]]
   for = "/*.js"
   [headers.values]
