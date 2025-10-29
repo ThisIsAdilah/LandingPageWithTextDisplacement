@@ -320,11 +320,15 @@ function setupEvents() {
 }
 
 function init() {
-  setupCanvas();
-  setupWebGL();
-  setupShaders();
-  loadLogo();
-  setupEvents();
+  try {
+    setupCanvas();
+    setupWebGL();
+    setupShaders();
+    loadLogo();
+    setupEvents();
+  } catch (error) {
+    console.error("Error initializing WebGL canvas:", error);
+  }
 }
 
 init();
